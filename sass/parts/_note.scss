@@ -81,10 +81,16 @@
   transform: translateY(-50%);
 }
 
-summary:hover,
-summary:focus {
+summary:hover {
   color: var(--primary-color);
   background-color: var(--note-header-bg);
   outline: none;
-  padding: 10px;
+  padding: {
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+  overflow: visible;
+  position: relative;
+  left: -10px;
 }
