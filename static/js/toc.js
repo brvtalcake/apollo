@@ -1,12 +1,24 @@
+function initToc(title, list)
+{
+    title.classList.toggle('expanded', false);
+    list.classList.toggle('expanded', false);
+    list.style.display = 'block';
+    list.style.maxHeight = '0';
+    list.style.overflow = 'hidden';
+    list.style.transition = 'max-height 0.3s ease-out';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const tocTitle = document.querySelector('.toc-title');
     const tocList = document.querySelector('.toc-list');
+    initToc(tocTitle, tocList);
 
     if (tocTitle && tocList) {
         const toggleToC = () => {
-            const isExpanded = tocList.style.display === 'block' || window.getComputedStyle(tocList).display === 'block';
-            tocList.style.display = isExpanded ? 'none' : 'block';
-            tocTitle.classList.toggle('expanded', !isExpanded);
+            tocTitle.classList.toggle('expanded');
+            tocList.classList.toggle('expanded');
+            const expanded = tocList.classList.contains('expanded');
+            tocList.style.maxHeight = expanded ? `${tocList.scrollHeight}px` : '0';
         };
 
         tocTitle.addEventListener('click', toggleToC);
