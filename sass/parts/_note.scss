@@ -4,7 +4,6 @@
   --note-content-bg: var(--bg-1);
 }
 
-
 .note-container {
   border-radius: 4px;
   overflow: hidden;
@@ -13,6 +12,13 @@
   border-left: 3px solid var(--primary-color);
   font-family: var(--paragraph-font);
 }
+
+/* .note-toggle + .note-content {
+  display: block !important;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+} */
 
 .note-toggle,
 .note-header {
@@ -43,14 +49,14 @@
 }
 
 .note-toggle {
-  font-family: inherit; 
+  font-family: inherit;
   padding: 10px 25px; /* Stop header intersecting with note-icon */
   cursor: pointer;
   position: relative;
 }
 
 .note-toggle::before {
-  content: '▼';
+  content: "▼";
   position: absolute;
   right: 20px;
   /* Position the arrow to the right */
@@ -68,12 +74,15 @@
 }
 
 .note-content {
-  padding: 10px 20px;
   background-color: var(--note-content-bg);
 }
 
+.note-header + .note-content {
+  padding: 10px 20px;
+}
+
 .note-icon::before {
-  content: '✎';
+  content: "✎";
   color: var(--primary-color);
   position: absolute;
   left: 20px;
@@ -81,16 +90,39 @@
   transform: translateY(-50%);
 }
 
-summary:hover {
-  color: var(--primary-color);
-  background-color: var(--note-header-bg);
-  outline: none;
-  padding: {
-    top: 10px;
-    bottom: 10px;
-    left: 10px;
+details {
+  summary {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    ::marker {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: var(--primary-color);
+      background-color: var(--note-header-bg);
+      outline: none;
+      /* padding: { */
+      /*   top: 10px; */
+      /*   bottom: 10px; */
+      /*   left: 10px; */
+      /* } */
+      /* overflow: visible; */
+      /* position: relative; */
+      /* left: -10px; */
+      cursor: pointer;
+    }
   }
-  overflow: visible;
-  position: relative;
-  left: -10px;
+
+  &[open] {
+    summary {
+      ::marker {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  overflow: hidden;
 }
