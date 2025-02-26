@@ -11,9 +11,9 @@ function initToc(title, list)
 document.addEventListener('DOMContentLoaded', () => {
     const tocTitle = document.querySelector('.toc-title');
     const tocList = document.querySelector('.toc-list');
-    initToc(tocTitle, tocList);
-
+    
     if (tocTitle && tocList) {
+        initToc(tocTitle, tocList);
         const toggleToC = () => {
             tocTitle.classList.toggle('expanded');
             tocList.classList.toggle('expanded');
